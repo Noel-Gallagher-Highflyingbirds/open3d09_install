@@ -67,6 +67,17 @@ use open3d to show and register point cloud
 python test.py
 ```
 
+## result
+show point cloud
+
+![image](./pictures/show_bunny.jpg)
+
+register_bunny.jpg
+![image](./pictures/register_bunny.jpg)
+
+refine_registration_bunny.jpg
+![image](./pictures/refine_registration_bunny.jpg)
+
 
 # tips:
 1. "your_install_path" is the path you want to install open3d binary files, for example: \
