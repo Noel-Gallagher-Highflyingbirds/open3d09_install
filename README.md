@@ -23,8 +23,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="your_install_path" ..
 cmake --build . --config Release --target ALL_BUILD
 cmake --build . --config Release --target INSTALL
 cmake --build . --config Release --target pip-package
-cd lib/python_package/pip_package
-pip install open3d-0.9.0.0-cp37-cp37m-win_amd64.whl
+pip install .\lib\python_package\pip_package\open3d-0.9.0.0-cp37-cp37m-win_amd64.whl
 conda list
 ```
 then you'll see open3d(python) installed in your virtual environment
