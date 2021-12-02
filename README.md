@@ -85,7 +85,7 @@ refine_registration_bunny.jpg
 2. for DCMAKE_BUILD_TYPE, Release mode is recommended for it runs faster than Debug mode
 
 # references
-[http://www.open3d.org/docs/0.9.0/compilation.html](http://www.open3d.org/docs/0.9.0/compilation.html)
+[http://www.open3d.org/docs/0.9.0/compilation.html](http://www.open3d.org/docs/0.9.0/compilation.html)\
 [http://www.open3d.org/docs/release/compilation.html](http://www.open3d.org/docs/release/compilation.html)
 
 
