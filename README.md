@@ -45,8 +45,18 @@ mkdir install
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=Release ..
 make -j4
+make install -j4
+make pip-package
 ```
-
+if you install open3d before, you need to uninstall it first
+```bash
+pip uninstall open3d
+```
+then install the compile version
+```bash
+pip install lib/python_package/pip_package/open3d-0.9.0.0-cp37-cp37m-linux_x86_64.whl
+```
+note:filename "open3d-0.9.0.0-cp37-cp37m-linux_x86_64.whl" depends on your python version
 
 # tips:
 1. "your_install_path" is the path you want to install open3d binary files, for example: \
