@@ -19,7 +19,7 @@ use cmd following
 cd open3d09_install
 mkdir build
 cd build
-cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="your_install_path" ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="your_install_path" ..
 cmake --build . --config Release --target ALL_BUILD
 cmake --build . --config Release --target INSTALL
 cmake --build . --config Release --target pip-package
@@ -30,7 +30,7 @@ conda list
 then you'll see open3d(python) installed in your virtual environment
 
 # linux
-test on ubuntu1604 with gcc7.5, python 3.7
+test on ubuntu1604 with gcc7.5, python 3.7\
 install gcc7.5 on your machine:\
 [https://blog.csdn.net/liaoze22/article/details/107821653](https://blog.csdn.net/liaoze22/article/details/107821653)\
 or\
@@ -57,6 +57,16 @@ then install the compile version
 pip install lib/python_package/pip_package/open3d-0.9.0.0-cp37-cp37m-linux_x86_64.whl
 ```
 note:filename "open3d-0.9.0.0-cp37-cp37m-linux_x86_64.whl" depends on your python version
+
+# test
+```bash
+cd ../test
+```
+use open3d to show and register point cloud
+```bash
+python test.py
+```
+
 
 # tips:
 1. "your_install_path" is the path you want to install open3d binary files, for example: \
