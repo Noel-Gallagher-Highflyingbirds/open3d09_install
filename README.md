@@ -10,18 +10,15 @@ https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/blob/open3d09
 https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/blob/open3d09_13/src/Open3D/Registration/Registration.cpp#L232
 
 
-
-
 # note
 you can find open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.9.0](https://github.com/isl-org/Open3D/tree/v0.9.0)\
-but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty",
+but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty"
 
 # clone code
 download source code
 ```bash
 git clone -b open3d09_13 https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install.git
 ```
-
 
 
 # windows
