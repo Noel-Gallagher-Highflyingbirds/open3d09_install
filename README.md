@@ -13,7 +13,7 @@ https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/blob/open3d09
 
 
 # note
-you canfind open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.9.0](https://github.com/isl-org/Open3D/tree/v0.9.0)\
+you can find open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.9.0](https://github.com/isl-org/Open3D/tree/v0.9.0)\
 but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty",
 
 # clone code
