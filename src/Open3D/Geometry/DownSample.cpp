@@ -438,8 +438,10 @@ PointCloud::RemoveStatisticalOutliers(size_t nb_neighbors,
     std::vector<double> avg_distances = std::vector<double>(points_.size());
     std::vector<size_t> indices;
     size_t valid_distances = 0;
+    // bug fix: add threads synchronization to RemoveStatisticalOutlier
+    //https://github.com/isl-org/Open3D/blob/master/cpp/open3d/geometry/PointCloud.cpp#L554
 #ifdef _OPENMP
-#pragma omp parallel for schedule(static)
+#pragma omp parallel for reduction(+ : valid_distances) schedule(static)
 #endif
     for (int i = 0; i < int(points_.size()); i++) {
         std::vector<int> tmp_indices;

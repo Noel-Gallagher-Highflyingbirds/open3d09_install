@@ -152,13 +152,19 @@ std::tuple<Eigen::Vector4d, std::vector<size_t>> PointCloud::SegmentPlane(
     std::vector<size_t> indices(num_points);
     std::iota(std::begin(indices), std::end(indices), 0);
 
-    std::random_device rd;
-    std::mt19937 rng(rd());
+    //std::random_device rd;
+    //https://github.com/isl-org/Open3D/blob/master/cpp/open3d/geometry/PointCloudSegmentation.cpp#L139
+    // 固定seed为123456
+    std::mt19937 rng(123456);
 
     // Return if ransac_n is less than the required plane model parameters.
     if (ransac_n < 3) {
         utility::LogError(
                 "ransac_n should be set to higher than or equal to 3.");
+        return std::make_tuple(best_plane_model, inliers);
+    }
+        if (num_points < size_t(ransac_n)) {
+        utility::LogError("There must be at least 'ransac_n' points.");
         return std::make_tuple(best_plane_model, inliers);
     }
 

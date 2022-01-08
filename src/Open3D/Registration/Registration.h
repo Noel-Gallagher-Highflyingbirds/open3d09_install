@@ -71,14 +71,25 @@ public:
 /// control max_validation_ so that the computation time is acceptable.
 class RANSACConvergenceCriteria {
 public:
-    RANSACConvergenceCriteria(int max_iteration = 1000,
-                              int max_validation = 1000)
-        : max_iteration_(max_iteration), max_validation_(max_validation) {}
+    /// \brief Parameterized Constructor.
+    ///
+    /// \param max_iteration Maximum iteration before iteration stops.
+    /// \param confidence Desired probability of success. Used for estimating
+    /// early termination by k = log(1 - confidence)/log(1 -
+    /// inlier_ratio^{ransac_n}).
+    RANSACConvergenceCriteria(int max_iteration = 100000,
+                              double confidence = 0.999)
+        : max_iteration_(max_iteration), confidence_(confidence) {}
+
     ~RANSACConvergenceCriteria() {}
 
 public:
+    //int max_iteration_;
+    //int max_validation_;
+    /// Maximum iteration before iteration stops.
     int max_iteration_;
-    int max_validation_;
+    /// Desired probability of success.
+    double confidence_;
 };
 
 /// Class that contains the registration results
@@ -88,11 +99,22 @@ public:
             const Eigen::Matrix4d &transformation = Eigen::Matrix4d::Identity())
         : transformation_(transformation), inlier_rmse_(0.0), fitness_(0.0) {}
     ~RegistrationResult() {}
+    bool IsBetterRANSACThan(const RegistrationResult &other) const {
+        return fitness_ > other.fitness_ || (fitness_ == other.fitness_ &&
+                                             inlier_rmse_ < other.inlier_rmse_);
+    }
 
 public:
+    /// The estimated transformation matrix.
     Eigen::Matrix4d_u transformation_;
+    /// Correspondence set between source and target point cloud.
     CorrespondenceSet correspondence_set_;
+    /// RMSE of all inlier correspondences. Lower is better.
     double inlier_rmse_;
+    /// For ICP: the overlapping area (# of inlier correspondences / # of points
+    /// in target). Higher is better.
+    /// For RANSAC: inlier ratio (# of inlier correspondences / # of
+    /// all correspondences)
     double fitness_;
 };
 
@@ -122,7 +144,9 @@ RegistrationResult RegistrationRANSACBasedOnCorrespondence(
         double max_correspondence_distance,
         const TransformationEstimation &estimation =
                 TransformationEstimationPointToPoint(false),
-        int ransac_n = 6,
+        int ransac_n = 3,
+        const std::vector<std::reference_wrapper<const CorrespondenceChecker>>
+                &checkers = {},
         const RANSACConvergenceCriteria &criteria =
                 RANSACConvergenceCriteria());
 
@@ -135,7 +159,7 @@ RegistrationResult RegistrationRANSACBasedOnFeatureMatching(
         double max_correspondence_distance,
         const TransformationEstimation &estimation =
                 TransformationEstimationPointToPoint(false),
-        int ransac_n = 4,
+        int ransac_n = 3,
         const std::vector<std::reference_wrapper<const CorrespondenceChecker>>
                 &checkers = {},
         const RANSACConvergenceCriteria &criteria =
