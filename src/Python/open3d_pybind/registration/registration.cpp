@@ -117,41 +117,40 @@ void pybind_registration_classes(py::module &m) {
                         c.max_iteration_);
             });
 
-    // open3d.registration.RANSACConvergenceCriteria
-    py::class_<registration::RANSACConvergenceCriteria> ransac_criteria(
+        // open3d.registration.RANSACConvergenceCriteria
+        py::class_<registration::RANSACConvergenceCriteria> ransac_criteria(
             m, "RANSACConvergenceCriteria",
-            "Class that defines the convergence criteria of RANSAC. RANSAC "
-            "algorithm stops if the iteration number hits ``max_iteration``, "
-            "or the validation has been run for ``max_validation`` times. Note "
-            "that the validation is the most computational expensive operator "
-            "in an iteration. Most iterations do not do full validation. It is "
-            "crucial to control ``max_validation`` so that the computation "
-            "time is acceptable.");
-    py::detail::bind_copy_functions<registration::RANSACConvergenceCriteria>(
-            ransac_criteria);
-    ransac_criteria
-            .def(py::init([](int max_iteration, int max_validation) {
-                     return new registration::RANSACConvergenceCriteria(
-                             max_iteration, max_validation);
-                 }),
-                 "max_iteration"_a = 1000, "max_validation"_a = 1000)
-            .def_readwrite(
-                    "max_iteration",
-                    &registration::RANSACConvergenceCriteria::max_iteration_,
-                    "Maximum iteration before iteration stops.")
-            .def_readwrite(
-                    "max_validation",
-                    &registration::RANSACConvergenceCriteria::max_validation_,
-                    "Maximum times the validation has been run before the "
-                    "iteration stops.")
-            .def("__repr__",
-                 [](const registration::RANSACConvergenceCriteria &c) {
-                     return fmt::format(
-                             "registration::RANSACConvergenceCriteria "
-                             "class with max_iteration={:d}, "
-                             "and max_validation={:d}",
-                             c.max_iteration_, c.max_validation_);
-                 });
+            "Class that defines the convergence criteria of "
+            "RANSAC. RANSAC algorithm stops if the iteration "
+            "number hits ``max_iteration``, or the validation "
+            "has been run for ``max_validation`` times. Note "
+            "that the validation is the most computational "
+            "expensive operator in an iteration. Most "
+            "iterations do not do full validation. It is "
+            "crucial to control ``max_validation`` so that the "
+            "computation time is acceptable.");
+        py::detail::bind_copy_functions<registration::RANSACConvergenceCriteria>(ransac_criteria);
+        ransac_criteria
+            .def(py::init([](int max_iteration, double confidence) {
+            return new registration::RANSACConvergenceCriteria(max_iteration,
+                confidence);
+                }),
+                "max_iteration"_a = 100000, "confidence"_a = 0.999)
+            .def_readwrite("max_iteration",
+                &registration::RANSACConvergenceCriteria::max_iteration_,
+                "Maximum iteration before iteration stops.")
+                    .def_readwrite(
+                        "confidence", &registration::RANSACConvergenceCriteria::confidence_,
+                        "Maximum times the validation has been run before the "
+                        "iteration stops.")
+                    .def("__repr__", [](const registration::RANSACConvergenceCriteria& c) {
+                    return fmt::format(
+                        "registration::RANSACConvergenceCriteria "
+                        "class with max_iteration={:d}, "
+                        "and confidence={:e}",
+                        c.max_iteration_, c.confidence_);
+                        });
+
 
     // open3d.registration.TransformationEstimation
     py::class_<
@@ -543,8 +542,10 @@ void pybind_registration_methods(py::module &m) {
           "source"_a, "target"_a, "corres"_a, "max_correspondence_distance"_a,
           "estimation_method"_a =
                   registration::TransformationEstimationPointToPoint(false),
-          "ransac_n"_a = 6,
-          "criteria"_a = registration::RANSACConvergenceCriteria());
+          "ransac_n"_a = 3,
+          "checkers"_a = std::vector<
+                    std::reference_wrapper<const registration::CorrespondenceChecker>>(),
+          "criteria"_a = registration::RANSACConvergenceCriteria(100000, 0.999));
     docstring::FunctionDocInject(m,
                                  "registration_ransac_based_on_correspondence",
                                  map_shared_argument_docstrings);
