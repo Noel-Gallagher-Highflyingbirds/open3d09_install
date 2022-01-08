@@ -1,5 +1,17 @@
 # open3d09_install
-open3d 0.9.0, easy install
+open3d 0.9.0, fix:
+1 deterministic results of statistical outlier filter\
+https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/blob/open3d09_13/src/Open3D/Geometry/DownSample.cpp#L444
+
+2 deterministic results of plane segmentation\
+https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/blob/open3d09_13/src/Open3D/Geometry/PointCloudSegmentation.cpp#L158
+
+3 add 0.13.0 registraion code and deterministic results of registration
+https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/blob/open3d09_13/src/Open3D/Registration/Registration.cpp#L232
+
+
+
+
 # note
 you canfind open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.9.0](https://github.com/isl-org/Open3D/tree/v0.9.0)\
 but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty",
