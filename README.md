@@ -7,7 +7,7 @@ but here, all 3rdparty source code such as eigen, pybind11 .etc, have already do
 # clone code
 download source code
 ```bash
-git clone -b open3d09_13 https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install.git
+git clone https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install.git
 ```
 
 
