@@ -1,13 +1,13 @@
 # open3d10_install
 open3d 0.10.0
 # note
-you canfind open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.10.0](https://github.com/isl-org/Open3D/tree/v0.10.0)\
+you canfind open3d10 origin source code: [https://github.com/isl-org/Open3D/tree/v0.10.0](https://github.com/isl-org/Open3D/tree/v0.10.0)\
 but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty"
 
 # clone code
 download source code
 ```bash
-git clone -b open3d10_origin https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install.git
+git clone -b open3d10_origin https://github.com/Noel-Gallagher-Highflyingbirds/open3d_install.git
 ```
 
 # windows
@@ -41,8 +41,7 @@ or\
 
 cmd
 ```bash
-unzip open3d09_install.zip  -d open3d09_install
-cd open3d09_install
+cd open3d_install
 mkdir build
 mkdir install
 cd build
