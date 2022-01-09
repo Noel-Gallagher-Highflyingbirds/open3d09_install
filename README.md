@@ -7,7 +7,7 @@ but here, all 3rdparty source code such as eigen, pybind11 .etc, have already do
 # clone code
 download source code
 ```bash
-git clone https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install.git
+git clone https://github.com/Noel-Gallagher-Highflyingbirds/open3d_install.git
 ```
 
 
@@ -22,7 +22,7 @@ conda activate <your_env_name>
 
 use cmd following
 ```bash
-cd open3d09_install
+cd open3d_install
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="your_install_path" ..
@@ -43,8 +43,7 @@ or\
 
 cmd
 ```bash
-unzip open3d09_install.zip  -d open3d09_install
-cd open3d09_install
+cd open3d_install
 mkdir build
 mkdir install
 cd build
