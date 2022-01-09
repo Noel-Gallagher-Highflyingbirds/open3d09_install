@@ -1,15 +1,18 @@
-# open3d09_install
-open3d 0.9.0, easy install
+# open3d10_install
+open3d 0.10.0
 # note
-you canfind open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.9.0](https://github.com/isl-org/Open3D/tree/v0.9.0)\
-but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty",
-you only need to download source code [here](https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/releases/tag/v1.0.0) and use cmd following to install open3d0.9 on your machine
+you canfind open3d10 origin source code: [https://github.com/isl-org/Open3D/tree/v0.10.0](https://github.com/isl-org/Open3D/tree/v0.10.0)\
+but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty"
 
+# clone code
+download source code
+```bash
+git clone -b open3d10_deterministic https://github.com/Noel-Gallagher-Highflyingbirds/open3d_install.git
+```
 
 # windows
 test on windows10 with vs2019, cmake3.22, python3.7
 
-unzip open3d09_install.zip Manually\
 activate your conda virtual environment
 ```bash
 conda activate <your_env_name>
@@ -17,7 +20,7 @@ conda activate <your_env_name>
 
 use cmd following
 ```bash
-cd open3d09_install
+cd open3d_install
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="your_install_path" ..
@@ -38,8 +41,7 @@ or\
 
 cmd
 ```bash
-unzip open3d09_install.zip  -d open3d09_install
-cd open3d09_install
+cd open3d_install
 mkdir build
 mkdir install
 cd build
