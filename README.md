@@ -1,110 +1,92 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/intel-isl/Open3D/master/docs/_static/open3d_logo_horizontal.png" width="320" />
-</p>
+# open3d09_install
+open3d 0.9.0, easy install
+# note
+you canfind open3d09 origin source code: [https://github.com/isl-org/Open3D/tree/v0.9.0](https://github.com/isl-org/Open3D/tree/v0.9.0)\
+but here, all 3rdparty source code such as eigen, pybind11 .etc, have already downloaded and unzipped to folder "3rdparty",
+you only need to download source code [here](https://github.com/Noel-Gallagher-Highflyingbirds/open3d09_install/releases/tag/v1.0.0) and use cmd following to install open3d0.9 on your machine
 
-# Open3D: A Modern Library for 3D Data Processing
 
-<h4>
-    <a href="http://www.open3d.org">Homepage</a> |
-    <a href="http://www.open3d.org/docs">Docs</a> |
-    <a href="https://github.com/intel-isl/Open3D/releases">Viewer App</a> |
-    <a href="http://www.open3d.org/docs/release/getting_started.html">Quick Start</a> |
-    <a href="http://www.open3d.org/docs/release/compilation.html">Build from Source</a> |
-    <a href="http://www.open3d.org/docs/release/index.html#python-api-index">Python API</a> |
-    <a href="http://www.open3d.org/docs/release/cpp_api/index.html">C++ API</a> |
-    <a href="http://www.open3d.org/docs/release/contribute.html">Contribute</a> |
-    <a href="https://www.youtube.com/watch?v=I3UjXlA4IsU">Demo</a> |
-    <a href="https://forum.open3d.org">Forum</a>
-</h4>
+# windows
+test on windows10 with vs2019, cmake3.22, python3.7
 
-Open3D is an open-source library that supports rapid development of software
-that deals with 3D data. The Open3D frontend exposes a set of carefully selected
-data structures and algorithms in both C++ and Python. The backend is highly
-optimized and is set up for parallelization. We welcome contributions from
-the open-source community.
-
-[![C/C++ CI](https://github.com/intel-isl/Open3D/workflows/C/C++%20CI/badge.svg)](https://github.com/intel-isl/Open3D/actions)
-[![Build Status](https://travis-ci.org/intel-isl/Open3D.svg?branch=master)](https://travis-ci.org/intel-isl/)
-[![Build status](https://ci.appveyor.com/api/projects/status/3hasjo041lv6srsi/branch/master?svg=true)](https://ci.appveyor.com/project/yxlao/open3d/branch/master)
-
-#### Core features of Open3D includes:
-
-* 3D data structures
-* 3D data processing algorithms
-* Scene reconstruction
-* Surface alignment
-* 3D visualization
-* Physically based rendering (PBR)
-* Available in C++ and Python
-
-For more, please visit the [Open3D documentation](http://www.open3d.org/docs).
-
-## Open3D viewer app
-
-<img align="left" width="480" src="https://raw.githubusercontent.com/intel-isl/Open3D/master/docs/_static/open3d_viewer.png">
-
-Open3D now comes with a standalone 3D viewer app available on Ubuntu and macOS.
-Please stay tuned for Windows.
-
-You can download Open3D viewer from
-[our release page](https://github.com/intel-isl/Open3D/releases).
-
-<br clear="left"/>
-
-## Python quick start
-
-Pre-built pip and conda packages support Ubuntu 18.04+, macOS 10.14+ and
-Windows 10 (64-bit) with Python 3.5, 3.6, 3.7 and 3.8. If you have other Python
-versions or operating systems, please
-[compile Open3D from source](http://www.open3d.org/docs/release/compilation.html).
-
-* To install Open3D with pip:
-
-    ```bash
-    $ pip install open3d
-    ```
-
-* To install Open3D with Conda:
-
-    ```bash
-    $ conda install -c open3d-admin open3d
-    ```
-
-* To compile Open3D from source:
-    * See [compiling from source](http://www.open3d.org/docs/release/compilation.html).
-
-Test your installation with:
-
+unzip open3d09_install.zip Manually\
+activate your conda virtual environment
 ```bash
-$ python -c "import open3d as o3d"
+conda activate <your_env_name>
 ```
 
-and follow the [basic tutorials](http://www.open3d.org/docs/release/tutorial/Basic/index.html)
-or [Python examples](https://github.com/intel-isl/Open3D/tree/master/examples/Python) to get
-started.
-
-## C++ quick start
-
-Please refer to [compiling from source](http://www.open3d.org/docs/release/compilation.html)
-and [Open3D C++ interface](http://www.open3d.org/docs/release/tutorial/C++/cplusplus_interface.html).
-
-## Communication channels
-
-* [GitHub Issue](https://github.com/intel-isl/Open3D/issues): bug reports,
-  feature requests, etc.
-* [Forum](https://forum.open3d.org): discussion on the usage of Open3D.
-* [Discord Chat](https://discord.gg/D35BGvn): online chats, discussions,
-  and collaboration with other users and developers.
-
-## Citation
-
-Please cite [our work](https://arxiv.org/abs/1801.09847) if you use Open3D.
-
-```bib
-@article{Zhou2018,
-    author    = {Qian-Yi Zhou and Jaesik Park and Vladlen Koltun},
-    title     = {{Open3D}: {A} Modern Library for {3D} Data Processing},
-    journal   = {arXiv:1801.09847},
-    year      = {2018},
-}
+use cmd following
+```bash
+cd open3d09_install
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="your_install_path" ..
+cmake --build . --config Release --target ALL_BUILD
+cmake --build . --config Release --target INSTALL
+cmake --build . --config Release --target pip-package
+pip install .\lib\python_package\pip_package\open3d-0.9.0.0-cp37-cp37m-win_amd64.whl
+conda list
 ```
+then you'll see open3d(python) installed in your virtual environment
+
+# linux
+test on ubuntu1604 with gcc7.5, python 3.7\
+install gcc7.5 on your machine:\
+[https://blog.csdn.net/liaoze22/article/details/107821653](https://blog.csdn.net/liaoze22/article/details/107821653)\
+or\
+[https://www.cnblogs.com/shuazi/p/10688992.html](https://www.cnblogs.com/shuazi/p/10688992.html)
+
+cmd
+```bash
+unzip open3d09_install.zip  -d open3d09_install
+cd open3d09_install
+mkdir build
+mkdir install
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_BUILD_TYPE=Release ..
+make -j4
+make install -j4
+make pip-package
+```
+if you install open3d before, you need to uninstall it first
+```bash
+pip uninstall open3d
+```
+then install the compile version
+```bash
+pip install lib/python_package/pip_package/open3d-0.9.0.0-cp37-cp37m-linux_x86_64.whl
+```
+note:filename "open3d-0.9.0.0-cp37-cp37m-linux_x86_64.whl" depends on your python version
+
+# test
+```bash
+cd ../test
+```
+use open3d to show and register point cloud
+```bash
+python test.py
+```
+
+## result
+show point cloud
+
+![image](./pictures/show_bunny.jpg)
+
+register_bunny.jpg
+![image](./pictures/register_bunny.jpg)
+
+refine_registration_bunny.jpg
+![image](./pictures/refine_registration_bunny.jpg)
+
+
+# tips:
+1. "your_install_path" is the path you want to install open3d binary files, for example: \
+**D:/carlos/Program Files/open3d09_install/**(windows), \
+**/home/carlos/open3d_install/**(linux)\
+2. for DCMAKE_BUILD_TYPE, Release mode is recommended for it runs faster than Debug mode
+
+# references
+[http://www.open3d.org/docs/0.9.0/compilation.html](http://www.open3d.org/docs/0.9.0/compilation.html)\
+[http://www.open3d.org/docs/release/compilation.html](http://www.open3d.org/docs/release/compilation.html)
+
+
