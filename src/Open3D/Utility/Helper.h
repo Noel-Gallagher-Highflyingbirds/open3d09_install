@@ -29,6 +29,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <functional>
+#include <random>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -156,6 +157,28 @@ inline int DivUp(int x, int y) {
 /// The integer is drawn from a uniform distribution bounded by min and max
 /// (inclusive)
 int UniformRandInt(const int min, const int max);
+
+
+
+/// \class UniformRandIntGenerator
+///
+/// \brief Draw pseudo-random integers bounded by min and max (inclusive)
+/// from a uniform distribution
+class UniformRandIntGenerator {
+public:
+    UniformRandIntGenerator(
+            const int min,
+            const int max,
+            std::mt19937::result_type seed = std::random_device{}())
+        : distribution_(min, max), generator_(seed) {}
+    int operator()() { return distribution_(generator_); }
+
+protected:
+    std::uniform_int_distribution<int> distribution_;
+    std::mt19937 generator_;
+};
+
+
 
 /// Uniformly distributed binary-friendly floating point number in [0, 1).
 ///

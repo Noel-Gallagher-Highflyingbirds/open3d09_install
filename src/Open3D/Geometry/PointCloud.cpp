@@ -492,7 +492,8 @@ PointCloud::RemoveStatisticalOutliers(size_t nb_neighbors,
     std::vector<size_t> indices;
     size_t valid_distances = 0;
 #ifdef _OPENMP
-#pragma omp parallel for schedule(static)
+// #pragma omp parallel for schedule(static)
+#pragma omp parallel for reduction(+ : valid_distances) schedule(static)
 #endif
     for (int i = 0; i < int(points_.size()); i++) {
         std::vector<int> tmp_indices;

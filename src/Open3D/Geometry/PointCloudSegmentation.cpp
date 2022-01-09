@@ -152,8 +152,9 @@ std::tuple<Eigen::Vector4d, std::vector<size_t>> PointCloud::SegmentPlane(
     std::vector<size_t> indices(num_points);
     std::iota(std::begin(indices), std::end(indices), 0);
 
-    std::random_device rd;
-    std::mt19937 rng(rd());
+    // std::random_device rd;
+    // std::mt19937 rng(rd());
+    std::mt19937 rng(123456);
 
     // Return if ransac_n is less than the required plane model parameters.
     if (ransac_n < 3) {

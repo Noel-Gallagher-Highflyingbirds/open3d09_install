@@ -273,6 +273,8 @@ RegistrationResult RegistrationRANSACBasedOnFeatureMatching(
         geometry::KDTreeFlann kdtree(target);
         geometry::KDTreeFlann kdtree_feature(target_feature);
         RegistrationResult result_private;
+        utility::UniformRandIntGenerator rand_generator(
+                0, static_cast<int>(source.points_.size()) - 1, 123456);
 
 #ifdef _OPENMP
 #pragma omp for nowait
@@ -282,8 +284,9 @@ RegistrationResult RegistrationRANSACBasedOnFeatureMatching(
                 std::vector<double> dists(num_similar_features);
                 Eigen::Matrix4d transformation;
                 for (int j = 0; j < ransac_n; j++) {
-                    int source_sample_id = utility::UniformRandInt(
-                            0, static_cast<int>(source.points_.size()) - 1);
+                    // int source_sample_id = utility::UniformRandInt(
+                    //         0, static_cast<int>(source.points_.size()) - 1);
+                    int source_sample_id = rand_generator();
                     if (similar_features[source_sample_id].empty()) {
                         std::vector<int> indices(num_similar_features);
                         kdtree_feature.SearchKNN(
